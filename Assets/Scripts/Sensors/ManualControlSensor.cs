@@ -159,6 +159,7 @@ namespace Simulator.Sensors
                 SteerInput = Mathf.MoveTowards(SteerInput, keyboardInput.x, Time.deltaTime);
                 AccelInput = keyboardInput.y;
             }
+      Debug.LogError(SteerInput);
         }
 
         private void OnDestroy()
