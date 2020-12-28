@@ -49,7 +49,27 @@ namespace Simulator.Bridge.Ros
             linear_velocities = ConvertToVector(data.Velocity),
           };
         }
-        public static Ros.CompressedImage ConvertFrom(ImageData data)
+
+    public static Lgsvl.ComfortDataRos RosConvertFrom(ComfortData data)
+    {
+      return new Lgsvl.ComfortDataRos()
+      {
+        Name = data.Name,
+        header = new Ros.Header()
+        {
+          stamp = ConvertTime(data.Time),
+          frame_id = data.Frame,
+        },
+
+        velocity = ConvertToVector(data.velocity),
+        jerk = ConvertToVector(data.jerk),
+        angularVelocity = data.angularVelocity,
+        angularAcceleration = data.angularAcceleration,
+        roll = data.roll,
+        slip = data.slip
+      };
+    }
+      public static Ros.CompressedImage ConvertFrom(ImageData data)
         {
             return new Ros.CompressedImage()
             {
@@ -638,6 +658,24 @@ namespace Simulator.Bridge.Ros
                         AngularVelocity = Convert(obj.velocity.angular),
                     }).ToArray(),
             };
+        }
+
+        public static ComfortData ConvertTo(Lgsvl.ComfortDataRos data)
+        {
+          return new ComfortData()
+          {
+            Name = data.Name,
+            Frame = data.header.frame_id,
+            Time = data.header.stamp.secs,
+
+            velocity = Convert(data.velocity),
+            acceleration = Convert(data.acceleration),
+            jerk = Convert(data.jerk),
+            angularVelocity = data.angularVelocity,
+            angularAcceleration = data.angularAcceleration,
+            roll = data.roll,
+            slip = data.slip
+          };
         }
 
         public static VehicleControlData ConvertTo(Autoware.VehicleCmd data)

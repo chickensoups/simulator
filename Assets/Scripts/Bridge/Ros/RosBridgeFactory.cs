@@ -31,12 +31,14 @@ namespace Simulator.Bridge.Ros
             );
 
             RegPublisher<ImageData, Ros.CompressedImage>(plugin, Conversions.ConvertFrom);
+            RegPublisher<ComfortData, Lgsvl.ComfortDataRos>(plugin, Conversions.RosConvertFrom);
             RegPublisher<Detected2DObjectData, Lgsvl.Detection2DArray>(plugin, Conversions.ConvertFrom);
             RegPublisher<ClockData, Ros.Clock>(plugin, Conversions.ConvertFrom);
 
             RegSubscriber<VehicleStateData, Lgsvl.VehicleStateDataRos>(plugin, Conversions.ConvertTo);
             RegSubscriber<Detected2DObjectArray, Lgsvl.Detection2DArray>(plugin, Conversions.ConvertTo);
             RegSubscriber<Detected3DObjectArray, Lgsvl.Detection3DArray>(plugin, Conversions.ConvertTo);
+            RegSubscriber<ComfortData, Lgsvl.ComfortDataRos>(plugin, Conversions.ConvertTo);
 
             // std_srvs/Empty
             RegService<EmptySrv, Ros.Empty, EmptySrv, Ros.Empty>(plugin, Conversions.ConvertTo, Conversions.ConvertFrom);

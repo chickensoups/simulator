@@ -7,8 +7,8 @@
 
 namespace Simulator.Bridge.Data
 {
-    public class ClockData
-    {
-        public double Clock;
-   }
+  public class ClockData
+  {
+    public double Clock;
+  }
 }

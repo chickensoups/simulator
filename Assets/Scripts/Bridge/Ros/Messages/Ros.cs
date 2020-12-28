@@ -37,7 +37,7 @@ namespace Simulator.Bridge.Ros.Ros
         public PartialByteArray data;
     }
 
-    [MessageType("std_msgs/Header")]
+  [MessageType("std_msgs/Header")]
     public class Header
     {
         public uint seq;

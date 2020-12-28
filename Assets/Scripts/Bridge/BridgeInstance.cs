@@ -65,7 +65,7 @@ namespace Simulator.Bridge
             var pubCreator = Plugin.GetCreatePublisher<DataType>();
             if (pubCreator == null)
             {
-                throw new NotSupportedException($"Publisher on {topic} topic for for {typeof(DataType).Name} not supported by {Plugin.Name} bridge");
+                throw new NotSupportedException($"Publisher on {topic} topic for {typeof(DataType).Name} not supported by {Plugin.Name} bridge");
             }
 
             var newPub = pubCreator(Instance, topic);
@@ -108,7 +108,7 @@ namespace Simulator.Bridge
             var subCreator = Plugin.GetCreateSubscriber<DataType>();
             if (subCreator == null)
             {
-                throw new NotSupportedException($"Subscriber on {topic} topic for for {typeof(DataType).Name} not supported by {Plugin.Name} bridge");
+                throw new NotSupportedException($"Subscriber on {topic} topic for {typeof(DataType).Name} not supported by {Plugin.Name} bridge");
             }
 
             subCreator(Instance, topic, data =>
@@ -141,7 +141,7 @@ namespace Simulator.Bridge
             var srvCreator = Plugin.GetCreateService<ArgDataType, ResDataType>();
             if (srvCreator == null)
             {
-                throw new NotSupportedException($"Service on {topic} topic for for arg/result ({typeof(ArgDataType).Name}, {typeof(ResDataType).Name}) not supported by {Plugin.Name} bridge");
+                throw new NotSupportedException($"Service on {topic} topic for arg/result ({typeof(ArgDataType).Name}, {typeof(ResDataType).Name}) not supported by {Plugin.Name} bridge");
             }
 
             // TODO: if you want service statistics for UI, add them in this callback, look in AddPublisher method for example

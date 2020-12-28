@@ -35,7 +35,27 @@ namespace Simulator.Bridge.Ros2
             };
         }
 
-        public static Lgsvl.Detection2DArray ConvertFrom(Detected2DObjectData data)
+    public static Lgsvl.ComfortDataRos ConvertFrom(ComfortData data)
+    {
+      return new Lgsvl.ComfortDataRos()
+      {
+        Name = data.Name,
+        header = new Ros.Header()
+        {
+          stamp = Convert(data.Time),
+          frame_id = data.Frame,
+        },
+
+        velocity = ConvertToVector(data.velocity),
+        jerk = ConvertToVector(data.jerk),
+        angularVelocity = data.angularVelocity,
+        angularAcceleration = data.angularAcceleration,
+        roll = data.roll,
+        slip = data.slip
+      };
+    }
+
+    public static Lgsvl.Detection2DArray ConvertFrom(Detected2DObjectData data)
         {
             return new Lgsvl.Detection2DArray()
             {
@@ -361,6 +381,24 @@ namespace Simulator.Bridge.Ros2
                         AngularVelocity = Convert(obj.velocity.angular),
                     }).ToArray(),
             };
+        }
+
+        public static ComfortData ConvertTo(Lgsvl.ComfortDataRos data)
+        {
+          return new ComfortData()
+          {
+            Name = data.Name,
+            Frame = data.header.frame_id,
+            Time = data.header.stamp.secs,
+
+            velocity = Convert(data.velocity),
+            acceleration = Convert(data.acceleration),
+            jerk = Convert(data.jerk),
+            angularVelocity = data.angularVelocity,
+            angularAcceleration = data.angularAcceleration,
+            roll = data.roll,
+            slip = data.slip
+          };
         }
 
         public static VehicleControlData ConvertTo(Lgsvl.VehicleControlData data)

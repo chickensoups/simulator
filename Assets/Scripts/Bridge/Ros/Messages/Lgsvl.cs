@@ -170,7 +170,22 @@ namespace Simulator.Bridge.Ros.Lgsvl
         public Ros.Vector3 linear_velocities;
     }
 
-    [MessageType("lgsvl_msgs/VehicleControlData")]
+  [MessageType("lgsvl_msgs/ComfortData")]
+  public class ComfortDataRos
+  {
+    public Ros.Header header;
+
+    public string Name;
+    public Ros.Vector3 velocity;
+    public Ros.Vector3 acceleration;
+    public Ros.Vector3 jerk;
+    public float angularVelocity;
+    public float angularAcceleration;
+    public float roll;
+    public float slip;
+  }
+
+  [MessageType("lgsvl_msgs/VehicleControlData")]
     public class VehicleControlDataRos
     {
         public Ros.Header header;
